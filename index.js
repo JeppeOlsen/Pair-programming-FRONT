@@ -3,8 +3,7 @@ const baseUrl = "https://restjeppethuejonas.azurewebsites.net/api/records/"
 Vue.createApp({
     data() {
         return {
-            message: "Hello World",
-
+            
             //Get all / Sort
             records: [],
             allRecords: [],
@@ -20,7 +19,7 @@ Vue.createApp({
             deleteMessage: "",
 
             //Post
-            addData: { title: "", price: 0 },
+            addData: { title: "", artist: "", duration: 0, publicationYear: 0},
             addMessage: "",
 
             //Put
@@ -54,6 +53,17 @@ Vue.createApp({
                 console.log(this.allRecords)
             }
             catch (ex) {
+                alert(ex.message)
+            }
+        },
+
+        async addRecord() {
+            try {
+                console.log(this.addData)
+                response = await axios.post(baseUrl, this.addData)
+                this.addMessage = "response " + response.status + " " + response.statusText
+                this.getAllRecords()
+            } catch (ex) {
                 alert(ex.message)
             }
         },

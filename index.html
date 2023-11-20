@@ -23,6 +23,14 @@
         </ul>
 
         <div v-else>No records</div>
+
+        <h2>Add (POST)</h2>
+        <input v-model="addData.title" placeholder="Title" type="text" />
+        <input v-model="addData.artist" placeholder="Artist" type="text"  />
+        <input v-model.number="addData.duration" placeholder="Duration" type="number" />
+        <input v-model.number="addData.publicationYear" placeholder="Publication Tear" type="number" v-on:keyup.enter="addRecord()" />
+        <button v-on:click="addRecord()" class="btn btn-success">Add</button>
+        <div>{{addMessage}}</div>
       
 
         <h2>Filter by Title</h2>
