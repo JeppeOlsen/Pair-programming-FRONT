@@ -31,7 +31,7 @@
 
         <table v-if="records.length > 0" class="table table-striped">
             <thead>
-                <th><button v-on:click="sortByTitle()">Id</button></th>
+                <th><button v-on:click="sortById()">Id</button></th>
                 <th><button v-on:click="sortByTitle()">Title</button></th>
                 <th><button v-on:click="sortByArtist()">Artist</button></th>
                 
@@ -44,6 +44,8 @@
                 </tr>
             </tbody>
         </table>
+        <div v-else>No such records</div>
+
 
     </div>
 

@@ -31,12 +31,6 @@ Vue.createApp({
         }
     },
     methods: {
-        sayHello(name) {
-            if (name != null)
-                this.message = "Hello " + name
-            else
-                this.message = "Hello No Name"
-        },
 
         getAllRecords() {
             this.helperGetAndShow(baseUrl)
@@ -52,26 +46,26 @@ Vue.createApp({
             }
         },
 
-        methods: {
-            async getAll(url) {
-                try {
-                    const response = await axios.get(url)
-                    this.allRecords = await response.data
-                    this.records = this.allRecords
-                    console.log(this.allRecords)
-                }
-                catch (ex) {
-                    alert(ex.message)
-                }
-            },
+       async getAll(url) {
+            try {
+                const response = await axios.get(url)
+                this.allRecords = await response.data
+                this.records = this.allRecords
+                console.log(this.allRecords)
+            }
+            catch (ex) {
+                alert(ex.message)
+            }
         },
+
         filterByTitle(title) {
             console.log("Title:" + title + ":")
             console.log("All records " + this.allRecords)
             this.records = this.allRecords.filter(r => r.title.includes(title))
             console.log("filtered records: " + this.records)
         },
-        
+
+
         filterByArtist(artist) {
             console.log("Artist:" + artist + ":")
             console.log("All artist " + this.allRecords)
