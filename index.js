@@ -7,6 +7,9 @@ Vue.createApp({
 
             //Get all / Sort
             records: [],
+            allRecords: [],
+            title: null,
+            artist: null,
 
             //Get by id
             idtofind: 0,
@@ -38,21 +41,49 @@ Vue.createApp({
         getAllRecords() {
             this.helperGetAndShow(baseUrl)
         },
-        async helperGetAndShow(Url) { 
+        async helperGetAndShow(Url) {
             try {
                 const response = await axios.get(Url)
                 this.records = await response.data
-                
-            } 
+
+            }
             catch (ex) {
                 alert(ex.message)
             }
         },
-       
+
+        methods: {
+            async getAll(url) {
+                try {
+                    const response = await axios.get(url)
+                    this.allRecords = await response.data
+                    this.records = this.allRecords
+                    console.log(this.allRecords)
+                }
+                catch (ex) {
+                    alert(ex.message)
+                }
+            },
+        },
+        filterByTitle(title) {
+            console.log("Title:" + title + ":")
+            console.log("All records " + this.allRecords)
+            this.records = this.allRecords.filter(r => r.title.includes(title))
+            console.log("filtered records: " + this.records)
+        },
         
-        
+        filterByArtist(artist) {
+            console.log("Artist:" + artist + ":")
+            console.log("All artist " + this.allRecords)
+            this.records = this.allRecords.filter(r => r.artist.includes(artist))
+            console.log("filtered artists: " + this.records)
+        },
+    },
 
 
-    
-    }
+
+
+
+
+
 }).mount("#app")

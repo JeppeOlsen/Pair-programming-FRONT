@@ -24,7 +24,30 @@
 
         <div v-else>No records</div>
       
+
+        <h2>Filter by Title</h2>
+        <input placeholder="Title" type="text" v-model="title" v-on:keyup.enter="filterByTitle(title)">
+        <button v-on:click="filterByTitle(title)" class="btn btn-primary"> Filter </button>
+
+        <table v-if="records.length > 0" class="table table-striped">
+            <thead>
+                <th><button v-on:click="sortByTitle()">Id</button></th>
+                <th><button v-on:click="sortByTitle()">Title</button></th>
+                <th><button v-on:click="sortByArtist()">Artist</button></th>
+                
+            </thead>
+            <tbody>
+                <tr v-for="record in records">
+                    <td>{{record.id}}</td>
+                    <td>{{record.title}}</td>
+                    <td>{{record.artist}}</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
+
+    
     
     <script src="index.js"></script>
 </body>
